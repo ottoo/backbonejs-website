@@ -1,0 +1,20 @@
+body {
+  padding-top: 50px;
+}
+
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#shoppingcart-wrapper {
+	padding: 25px;
+	margin: 0 auto;
+	width: 250px;
+	height: 250px;
+	border: 1px solid black;
+}
+
+#shoppingcart-header {
+	margin-bottom: 25px;
+}

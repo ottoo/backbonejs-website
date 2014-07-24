@@ -1,0 +1,10 @@
+<div id="shoppingcart-wrapper">
+	<div id="shoppingcart-header">
+		<h2>Shopping cart</h2>
+	</div>
+	<ul id="cart-items">
+		<% _.each(items, function(item) { %>
+			<li><%= item.get("name") %></li>
+		<% }); %>
+	</ul>
+</div>
