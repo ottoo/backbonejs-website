@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <title>Web Store</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="description" content="Oma">
+  <meta name="author" content="Oma">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/parsley.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/lib/jquery-1.11.0.min.js"></script>  
+  <script src="js/lib/parsley.min.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  <script src="js/lib/backbone-min.js"></script>  
+  <script src="js/lib/bootstrap.min.js"></script>
+  <script src="js/lib/log4javascript.js"></script>  
+  <script src="js/views.js"></script>
+  <script src="js/models.js"></script>
+  <script src="js/app.js"></script>
+</head></script>
+	<body>
+   <div class="navbar navbar-fixed-top navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_items">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" title="Store">Store</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Catalog <span class="caret"></span></a>
+              <ul class="dropdown-menu multi-level" role="menu">
+                <li class="dropdown-submenu">
+                  <a tabindex="-1" href="#">Computers</a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Desktop PC</a></li>
+                    <li><a href="#">Laptop</a></li>
+                    <li><a href="#">Tablets</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Sound</a></li>
+                <li><a href="#">Networking</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li class"divider"></li>
+                <li><a href="#">Gaming Consoles</a></li>
+                <li><a href="#">Gaming Accoessories</a></li>
+                <li><a href="#">Games</a></li>
+              </ul>
+            </li>
+            <li class=""><a href="/about" title="About">About</a></li>
+            <li class=""><a href="/contact" title="Contact Us">Contact</a></li>
+            <li class=""><a href="/login" title="Login">Login</a></li>
+          </ul>
+          <!--<ul class="nav navbar-nav navbar-right">
+            <li><a href="/cart" title="Shopping Cart">Shopping Cart</a></li>
+          </ul>-->
+          <form id="login-form" class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input id="login-email" type="email" placeholder="Email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input id="login-password" type="password" placeholder="Password" class="form-control"required>
+            </div>
+              <input type="submit" id="submitBtn" class="btn btn-success validate">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+          <div id="template"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <footer>
+        <p>&copy; Otto Kivikärki 2014</p>
+      </footer>
+    </div>
+	</body>
+</html>
