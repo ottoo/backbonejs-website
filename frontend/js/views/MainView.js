@@ -3,7 +3,8 @@ define([
 	'underscore',
 	'backbone',
 	'views/LoginView',
-	'text!templates/main-template.html'
+	'text!templates/main-template.html',
+	'bootstrap-min'
 ], function($, _, Backbone, LoginView, mainTemplate) {
 	var MainView = Backbone.View.extend({
 		el: $("#template"),
