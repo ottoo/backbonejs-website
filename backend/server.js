@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
 var api = require('./routes/api');
@@ -8,6 +10,16 @@ var app = express();
 
 // Parse JSON
 app.use(bodyParser());
+// Cookies
+app.use(cookieParser());
+app.use(session({
+	resave: false,
+	saveUninitialized: false,
+	secret: 'salaisuus',
+	cookie: {
+		maxAge: 3600000
+	}
+}));
 // Use '/api' as the base route for the API
 app.use('/api', api);
 
@@ -25,5 +37,5 @@ db.once('open', function() {
 /* Server */
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
-  console.log('Express server listening on port ' + port	);
+	console.log('Express server listening on port ' + port);
 });

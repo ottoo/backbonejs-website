@@ -4,9 +4,15 @@ var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-	username: { type: String, required: true, index: { unique: true  }},
+	username: { type: String, required: true, trim: true, index: { unique: true  }},
 	password: { type: String, required: true },
-	email: { type: String, required: true, unique: true }
+	email: { type: String, required: true, lowercase: true, trim: true, unique: true },
+	address: {
+		street: { type: String, required: true, trim: true },
+		state: { type: String, required: true, trim: true },
+		zip: { type: Number, required: true, trim: true },
+		country: { type: String, required: true, trim: true }
+	}
 });
 
 UserSchema.pre('save', function(next) {
@@ -30,5 +36,9 @@ UserSchema.methods.comparePasswords = function(incomingPassword, cb) {
 		cb(null, isMatch);
 	});
 };
+
+UserSchema.virtual('userinfo').get(function() {
+	return this.username + ' ' + this.email;
+});
 
 module.exports = mongoose.model('User', UserSchema);
