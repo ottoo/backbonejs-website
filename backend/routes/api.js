@@ -78,7 +78,8 @@ router.route('/users').post(function(req, res) {
 	});
 });
 
-/*	Authenticate user 	*/
+/*	Authenticates user and sends a json response indicating
+	the session status 	*/
 router.route('/login').post(function(req, res) {
 	auth(req.body.username, req.body.password, function(err, user) {
 		console.log("USER: " + user);
@@ -93,7 +94,7 @@ router.route('/login').post(function(req, res) {
 	});
 });
 
-/*	Logs the user out	*/
+/*	Logs the user out and redirects to the frontpage	*/
 router.route('/logout').get(function(req, res) {
 	req.session.destroy(function() {
 		res.redirect('/');

@@ -1,12 +1,18 @@
 require.config({
 	urlArgs: "bust=" +  (new Date()).getTime(), //Debug
 	enforceDefine: true,
-	paths: {
-		templates: '../templates',
+	paths: {		
 		jquery: 'lib/jquery-min',
 		underscore: 'lib/underscore-min',
 		backbone: 'lib/backbone-min',
-		bootstrap: 'lib/bootstrap-min'
+		bootstrap: 'lib/bootstrap',
+		templates: '../templates'
+	},
+	shim: {
+		'bootstrap': {
+			deps: ['jquery'],
+			exports: '$.fn.popover'
+		}
 	}
 });
 
