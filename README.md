@@ -1,7 +1,8 @@
-backbonejs-shopping
+backbonejs web-site project
 ===================
 
-Started a backbonejs based web store project. Work in progress.
+Started a backbonejs based web-site project. Work in progress.
+This is to demonstrate my expertise with the related technologies.
 
 Going to be using
 
