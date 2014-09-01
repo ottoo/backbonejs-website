@@ -8,7 +8,8 @@ define([
 ], function($, _, Backbone, UserModel, LoginTemplate, ProfileMenuTemplate) {
 	var LoginView = Backbone.View.extend({
 		el: $("#login-container"),
-		initialize: function() {
+		initialize: function(options) {
+			console.log(this.options.loggedin);
 			console.log("RENDER \t Login");
 			$("#login-username").focus(function() {
 				$("#login-username").attr("placeholder", "Username");
@@ -19,10 +20,11 @@ define([
 				$("#login-password").removeClass("form-error");
 			});
 			this.model = new UserModel();
-			/*this.model.set({ id: "53d2b41daf685d4f6c3ed624" });
-			this.model.fetch();
-			console.log(this.model.get('email'));*/
-			this.render(LoginTemplate);
+			if (this.options.loggedin) {
+				this.render(ProfileMenuTemplate);
+			} else {
+				this.render(LoginTemplate);				
+			}
 		},
 		render: function(templateToRender) {
 			var template = _.template(templateToRender, {});
@@ -38,7 +40,7 @@ define([
 				type: "POST",
 				dataType: "json",
 				contentType: "application/x-www-form-urlencoded",
-				url: "/api/login",
+				url: "/node/api/login",
 				data: $.param({
 					username: $("#login-username").val(),
 					password: $("#login-password").val()

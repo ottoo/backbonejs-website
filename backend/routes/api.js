@@ -39,6 +39,30 @@ function auth(uname, pass, cb) {
 	});
 }
 
+/*	Authenticates user and sends a json response indicating
+	the session status 	*/
+router.route('/login').post(function(req, res) {
+	auth(req.body.username, req.body.password, function(err, valid, user) {
+		console.log("USER: " + user);
+		if (valid) {
+			req.session.regenerate(function() {
+				req.session.valid = true;
+				res.json({ session: req.session.valid, currentUser: user });
+			});
+		} else {
+			res.json({ session: false });
+		}
+	});
+});
+
+/*	Logs the user out and redirects to the frontpage	*/
+router.route('/logout').get(function(req, res) {
+	req.session.destroy(function() {
+		res.redirect('/');
+	});
+});
+
+/* 	Test function 	*/
 router.get('/hello', function(req, res) {
 	req.session.message = "HEI!!!!";
 	res.json({
@@ -80,29 +104,6 @@ router.route('/users').post(function(req, res) {
 		res.json({
 			message: 'New user created!'
 		});
-	});
-});
-
-/*	Authenticates user and sends a json response indicating
-	the session status 	*/
-router.route('/login').post(function(req, res) {
-	auth(req.body.username, req.body.password, function(err, valid, user) {
-		console.log("USER: " + user);
-		if (valid) {
-			req.session.regenerate(function() {
-				req.session.valid = true;
-				res.json({ session: req.session.valid, currentUser: user });
-			});
-		} else {
-			res.json({ session: false });
-		}
-	});
-});
-
-/*	Logs the user out and redirects to the frontpage	*/
-router.route('/logout').get(function(req, res) {
-	req.session.destroy(function() {
-		res.redirect('/');
 	});
 });
 

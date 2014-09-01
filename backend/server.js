@@ -21,9 +21,9 @@ app.use(session({
 	}
 }));
 // Use '/api' as the base route for the API
-app.use('/api', api);
+app.use('/node/api', api);
 
-mongoose.connect('mongodb://127.0.0.1:27017/webstore');
+mongoose.connect('mongodb://127.0.0.1:27017/backbonedb');
 
 var db = mongoose.connection;
 

@@ -3,7 +3,7 @@ define([
 ], function($) {
 	var Session = {
 		getSession: function() {
-			var jqxhr = $.get("/api/session");
+			var jqxhr = $.get("/node/api/session");
 			return jqxhr;
 		}
 	};

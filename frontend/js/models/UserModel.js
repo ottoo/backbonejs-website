@@ -24,7 +24,7 @@ define([
 				return '/api/users/' + this.id;
 			}*/
 
-			return '/api/users/';
+			return '/node/api/users/';
 		},
 		initialize: function() {
 			this.shoppingCart = new ItemCollection();
