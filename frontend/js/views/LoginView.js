@@ -9,7 +9,6 @@ define([
 	var LoginView = Backbone.View.extend({
 		el: $("#login-container"),
 		initialize: function(options) {
-			console.log(this.options.loggedin);
 			console.log("RENDER \t Login");
 			$("#login-username").focus(function() {
 				$("#login-username").attr("placeholder", "Username");
@@ -20,7 +19,7 @@ define([
 				$("#login-password").removeClass("form-error");
 			});
 			this.model = new UserModel();
-			if (this.options.loggedin) {
+			if (options.loggedin === true && options.loggedin !== undefined) {
 				this.render(ProfileMenuTemplate);
 			} else {
 				this.render(LoginTemplate);				
