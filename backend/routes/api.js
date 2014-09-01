@@ -31,10 +31,10 @@ function auth(uname, pass, cb) {
 		if (user != null) {
 			user.comparePasswords(pass, function(err, result) {
 				if (err) throw err;
-				cb(null, result);
+				cb(null, result, user);
 			});
 		} else {
-			cb(null, false);
+			cb(null, false, null);
 		}
 	});
 }
@@ -53,6 +53,11 @@ router.route('/users/:userid').get(function(req, res) {
 		if (err) res.send(err);
 		res.json(user);
 	});
+});
+
+/*	Update user 	*/
+router.route('/users:userid').put(function(req, res) {
+
 });
 
 /*	Insert new user to the database 	*/
@@ -81,12 +86,12 @@ router.route('/users').post(function(req, res) {
 /*	Authenticates user and sends a json response indicating
 	the session status 	*/
 router.route('/login').post(function(req, res) {
-	auth(req.body.username, req.body.password, function(err, user) {
+	auth(req.body.username, req.body.password, function(err, valid, user) {
 		console.log("USER: " + user);
-		if (user) {
+		if (valid) {
 			req.session.regenerate(function() {
 				req.session.valid = true;
-				res.json({ session: req.session.valid });
+				res.json({ session: req.session.valid, currentUser: user });
 			});
 		} else {
 			res.json({ session: false });

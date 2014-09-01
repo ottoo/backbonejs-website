@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, ItemCollection) {
 	var User = Backbone.Model.extend({
 		defaults: {
-			_id: "",
+			id: "",
 			username: "username",
 			password: "password",
 			email: "email",
@@ -17,14 +17,23 @@ define([
 				country: ""
 			}
 		},
-		url: function() {
-			return "/api/users/" + this._id;
+		urlRoot: function() {
+			/*if (this.isNew()) {
+				return '/api/users/';
+			} else {
+				return '/api/users/' + this.id;
+			}*/
+
+			return '/api/users/';
 		},
 		initialize: function() {
-			this.shoppingCart = new ItemCollection;
+			this.shoppingCart = new ItemCollection();
 		},
 		addItemToShoppingCart: function(item) {
 			this.shoppingCart.add(item);
+		},
+		echo: function() {
+			console.log(this.id);
 		}
 	});
 	return User;

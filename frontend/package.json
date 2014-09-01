@@ -1,0 +1,30 @@
+{
+  "name": "backbonejs",
+  "version": "0.0.0",
+  "description": "Backbone.js web-site project",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ottoo/backbonejs-shopping.git"
+  },
+  "keywords": [
+    "backbone.js",
+    "backbone",
+    "mongodb",
+    "node"
+  ],
+  "author": "Otto Kivikärki",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ottoo/backbonejs-shopping/issues"
+  },
+  "homepage": "https://github.com/ottoo/backbonejs-shopping",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "jshint-stylish": "^0.4.0"
+  }
+}

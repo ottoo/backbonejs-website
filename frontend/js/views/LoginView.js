@@ -2,28 +2,31 @@ define([
 	"jquery",
 	"underscore",
 	"backbone",
+	"models/UserModel",
 	"text!templates/login-template.html",
 	"text!templates/profile-menu-template.html"
-], function($, _, Backbone, loginTemplate, profileMenuTemplate) {
+], function($, _, Backbone, UserModel, LoginTemplate, ProfileMenuTemplate) {
 	var LoginView = Backbone.View.extend({
 		el: $("#login-container"),
 		initialize: function() {
 			console.log("RENDER \t Login");
-
 			$("#login-username").focus(function() {
 				$("#login-username").attr("placeholder", "Username");
 				$("#login-username").removeClass("form-error");
-			})
+			});
 			$("#login-password").focus(function() {
 				$("#login-password").attr("placeholder", "Password");
 				$("#login-password").removeClass("form-error");
 			});
-
-			this.render(loginTemplate);
+			this.model = new UserModel();
+			/*this.model.set({ id: "53d2b41daf685d4f6c3ed624" });
+			this.model.fetch();
+			console.log(this.model.get('email'));*/
+			this.render(LoginTemplate);
 		},
 		render: function(templateToRender) {
 			var template = _.template(templateToRender, {});
-			this.$el.html(template);			
+			this.$el.html(template);
 		},
 		events: {
 			"click #submitBtn": "loginClickHander"
@@ -41,8 +44,7 @@ define([
 					password: $("#login-password").val()
 				})
 			}).done(function(data) {
-				console.log(data.session);
-				if (data.session != true) {
+				if (data.session !== true) {
 					$("#login-username").val("");
 					$("#login-password").val("");
 					$("#login-username").attr("placeholder", "Wrong username!");
@@ -50,7 +52,16 @@ define([
 					$("#login-password").attr("placeholder", "Wrong password!");
 					$("#login-password").addClass("form-error");
 				} else {
-					self.render(profileMenuTemplate);
+					self.model.set({ id: data.currentUser._id });
+					self.model.fetch({
+						success: function() {
+							console.log(self.model.get('email'));
+						},
+						error: function() {
+							console.log("Error while fetching a model..");
+						}
+					});
+					self.render(ProfileMenuTemplate);
 				}
 			}).error(function() {
 				console.log("error");
